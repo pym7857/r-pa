@@ -13,7 +13,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 # container 외부로 노출할 port 설정(서버의 port와는 다름!)
-EXPOSE 8504
+EXPOSE 8501
 
 # 소스코드를 /app으로 복사
 COPY . /app
