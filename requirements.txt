@@ -5,4 +5,3 @@ pandas
 streamlit-aggrid
 datetime
 requests
-urllib
