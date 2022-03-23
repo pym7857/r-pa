@@ -5,8 +5,6 @@ import json
 import requests
 import pandas as pd
 from urllib import parse
-import sys
-import pymysql
 from st_aggrid import AgGrid
 from bs4 import BeautifulSoup
 
