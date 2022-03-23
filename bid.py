@@ -51,10 +51,10 @@ def bid():
             #url_list = ['getBidPblancListInfoCnstwkPPSSrch']
 
             for a in url_list:
+                st.write(a)
                 url = 'http://apis.data.go.kr/1230000/BidPublicInfoService02/' + a
                 key = 'kk21uIM463FsyxRw8huR6C%2FZreHho7dmXIdTe5j%2Feqa9XN6Dx%2F4Dh%2BxM%2FftZrpsS856Jicn3jtklnOac2TW9yQ%3D%3D'
 
-                print(a)
                 try:
                     queryParams = f'?{parse.quote_plus("ServiceKey")}={key}&' + parse.urlencode(
                         {
@@ -76,7 +76,6 @@ def bid():
                     print(items)
 
                     for item in items:
-
                         lst_01.append(str(item['bidNtceNo']) + "-" + str(item['bidNtceOrd']))
                         lst_02.append(item['bidNtceNm'])
                         try:
@@ -145,24 +144,15 @@ def bid():
                 print(len(lst_10))
 
                 df = pd.DataFrame(source)
+                st.dataframe(df)
 
-                try:
-                    writer = pd.ExcelWriter('./naraBid.xlsx', engine='xlsxwriter')
-                except Exception as e:
-                    print(e)
-
-                #반드시 열려있는 엑셀 파일을 닫고, 작업을 진행해야 합니다.
-                try:
-                    df.to_excel(writer)
-                    writer.save()
-                    print('(python)추출 완료!')
-                except Exception as e:
-                    print(e)
-                    print('(python)추출 에러!')
-                    print('파일이 열려있다면, 반드시 닫아주세요.')
-
-            df = pd.read_excel('./naraBid.xlsx')
-            AgGrid(df)
+            # 엑셀로 추출
+            try:
+                df.to_excel('./naraBid.xlsx')
+                st.write("(엑셀)추출 완료!")
+            except Exception as e:
+                st.write(e)
+                
             with open("naraBid.xlsx", "rb") as file:
                 btn = st.download_button(
                         key="naraBid.xlsx,",
