@@ -50,8 +50,10 @@ def bid():
             url_list = ['getBidPblancListInfoCnstwkPPSSrch','getBidPblancListInfoServcPPSSrch','getBidPblancListInfoFrgcptPPSSrch','getBidPblancListInfoThngPPSSrch']
             #url_list = ['getBidPblancListInfoCnstwkPPSSrch']
 
+            idx = 25
             for a in url_list:
-                st.write(a)
+                st.write(f"(추출중) {idx}% 추출 완료..")
+                idx += 25
                 url = 'http://apis.data.go.kr/1230000/BidPublicInfoService02/' + a
                 key = 'kk21uIM463FsyxRw8huR6C%2FZreHho7dmXIdTe5j%2Feqa9XN6Dx%2F4Dh%2BxM%2FftZrpsS856Jicn3jtklnOac2TW9yQ%3D%3D'
 
@@ -144,7 +146,9 @@ def bid():
                 print(len(lst_10))
 
                 df = pd.DataFrame(source)
-                st.dataframe(df)
+
+                if a == 'getBidPblancListInfoThngPPSSrch':
+                    AgGrid(df)
 
             # 엑셀로 추출
             try:
