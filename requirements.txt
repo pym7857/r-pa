@@ -1,0 +1,8 @@
+# requirements.txt
+
+streamlit
+pandas
+streamlit-aggrid
+datetime
+requests
+urllib
